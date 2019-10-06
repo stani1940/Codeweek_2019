@@ -15,7 +15,12 @@ class CreateRoomsTable extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
+            $table->unsignedBigInteger('hotel_id');
+            $table->foreign('hotel_id')->references('id')->on('hotels');
+            $table->string('type');
+            $table->string('description');
+            $table->decimal('price', 10, 2);
+            $table->string('image');
         });
     }
 
