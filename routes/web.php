@@ -15,6 +15,18 @@ Route::view('/', 'home');
 Route::get('/hotels', 'HotelController@index');
 Route::get('/rooms', 'RoomController@index');
 Route::get('/rooms/{id}', 'RoomController@show');
+Route::get('/roomprice', function() {
+
+    $crawler = Goutte::request('GET', 'http://hotelhemus.com/rooms/');
+
+    $crawler->filter('.price')->each(function ($node) {
+
+        dump($node->text());
+
+    });
+    echo "{$crawler->filter('.price')->first()->text()}";
+
+});
 
 
 Route::group(['prefix' => 'dashboard'], function() {
@@ -24,3 +36,6 @@ Route::group(['prefix' => 'dashboard'], function() {
     Route::resource('reservations', 'ReservationController')->except('create');
 
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('register');
