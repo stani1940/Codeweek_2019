@@ -3,7 +3,7 @@
 @section('content')
     <div class="container my-5">
         <div class="row">
-            @foreach ($hotelInfo ?? ''->rooms  as $option)
+            @foreach (rooms  as $option)
                 <div class="col-sm-4">
                     <div class="card mb-3">
                         <div style="background-image:url('{{ $room->image }}');height:300px;background-size:cover;"

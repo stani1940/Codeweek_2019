@@ -15,7 +15,7 @@ Route::view('/', 'home');
 Route::get('/hotels', 'HotelController@index');
 Route::get('/rooms', 'RoomController@index');
 Route::get('/rooms/{id}', 'RoomController@show');
-Route::get('/roomprice', function() {
+Route::get('/rooms/{id}/roomprice', function()  {
 
     $crawler = Goutte::request('GET', 'http://hotelhemus.com/rooms/');
 
@@ -24,7 +24,10 @@ Route::get('/roomprice', function() {
         dump($node->text());
 
     });
-    echo "{$crawler->filter('.price')->first()->text()}";
+
+        echo "{$crawler->filter('.price')->first()->text()}";
+
+
 
 });
 

@@ -10,10 +10,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $room->type }}</h5>
                             <p class="card-text">{{ $room->description }}</p>
-                            <p class="card-text">Цeна: {{ $room->price }} BGN <a href="/dashboard/{{ $room->id }}" class="btn btn-primary">Вземи реална оферта</a></p>
-
-
-
+                            <p class="card-text">Цeна: {{ $room->price }} BGN <a href="{{ $room->id }}/roomprice" class="btn btn-primary">Вземи реална оферта</a></p>
 
 
                         </div>

@@ -13,7 +13,7 @@
                             <small class="text-muted">{{ $hotel->location }}</small>
                             <p class="card-text">{{ $hotel->description }}</p>
                             <a href="/dashboard/reservations/create/{{ $hotel->id }}" class="btn btn-primary">Book Now</a>
-                            <a href="/rooms/{{ $hotel->id }}" class="btn btn-primary">Gallery</a>
+                            <a href="/rooms/" class="btn btn-primary">Gallery</a>
 
                         </div>
                     </div>
