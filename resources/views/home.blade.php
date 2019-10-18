@@ -8,7 +8,7 @@
 
         <div class="container">
             <h1 class="display-3">Резервирай своето място във Враца повече от лесно!</h1>
-            <a href="/login" class="btn btn-success btn-lg my-2">Регистрирай се за достъп до десетки хотели във Враца и региона</a>
+            <a href="/register" class="btn btn-success btn-lg my-2">Регистрирай се за достъп до десетки хотели във Враца и региона</a>
         </div>
     </div>
     <div class="container">
