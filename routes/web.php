@@ -42,3 +42,4 @@ Route::group(['prefix' => 'dashboard'], function() {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+ Route::get('/hotels', 'HotelController@index')->name('hotels')->middleware('auth');

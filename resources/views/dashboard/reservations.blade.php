@@ -3,7 +3,7 @@
 @section('content')
     <div  style="text-align: center" class="container mt-5">
         <h2>Вашите резервации</h2>
-        <table class="table mt-3">
+        <table class="table table-dark table-striped">
             <thead>
             <tr>
                 <th scope="col">Хотел</th>
