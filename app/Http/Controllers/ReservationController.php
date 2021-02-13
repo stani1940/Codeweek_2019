@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Models\Reservation;
 use App\Models\Hotel;
 use App\Models\Room;
@@ -20,7 +18,7 @@ class ReservationController extends Controller
         $reservations = Reservation::with('room', 'room.hotel')
             ->orderBy('arrival', 'asc')
             ->get();
-        return view('dashboard.reservations')->with('reservations',$reservations);
+        return view('dashboard.reservations',compact('reservations'));
     }
 
     /**
@@ -30,8 +28,8 @@ class ReservationController extends Controller
      */
     public function create($hotel_id)
     {
-        $hotelInfo = Hotel::with('rooms')->get()->find($hotel_id);
-        return view('dashboard.reservationCreate', compact('hotelInfo'));
+        $hotel_info = Hotel::with('rooms')->get()->find($hotel_id);
+        return view('dashboard.reservationCreate', compact('hotel_info'));
     }
 
     /**
@@ -63,7 +61,6 @@ class ReservationController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -90,9 +87,8 @@ class ReservationController extends Controller
         $reservation->arrival = $request->arrival;
         $reservation->departure = $request->departure;
         $reservation->room_id = $request->room_id;
-
         $reservation->save();
-        return redirect('dashboard/reservations')->with('success', 'Successfully updated your reservation!');
+        return redirect()->route('reservations.index')->with('success', 'Successfully updated your reservation!');
     }
 
     /**
@@ -101,12 +97,10 @@ class ReservationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Reservation $reservation)
     {
-        Reservation::where('id',$id)->delete();
-
-
-        return redirect('dashboard/reservations')->with('success', 'Successfully deleted your reservation!');
+        $reservation->delete();
+        return redirect()->route('reservations.index')->with('success', 'Successfully deleted your reservation!');
     }
 
 }
