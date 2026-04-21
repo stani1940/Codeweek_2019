@@ -25,19 +25,40 @@ Route::view('/', 'home');
 Route::get('/hotels', [HotelController::class, 'index'])->name('hotels')->middleware('auth');
 
 Route::get('/rooms', [RoomController::class, 'index']);
-Route::get('/rooms/{id}', [RoomController::class, 'show']);
 
-Route::get('/rooms/{id}/roomprice', function () {
-    // Replaced deprecated weidner/goutte with Symfony BrowserKit + HttpClient
-    $browser = new HttpBrowser(HttpClient::create());
-    $crawler = $browser->request('GET', 'http://hotelhemus.com/rooms/');
+Route::get('/roomprice/{id}', function ($id) {
+    try {
+        $room = App\Models\Room::findOrFail($id);
+        
+        $browser = new HttpBrowser(HttpClient::create());
+        $crawler = $browser->request('GET', 'http://hotelhemus.com/rooms/');
 
-    $crawler->filter('.price')->each(function ($node) {
-        dump($node->text());
-    });
+        // Try to find a section that mentions the room type (e.g. "апартамент")
+        // and extract the price from that specific section.
+        $targetPrice = $crawler->filter('.room-item') // Assuming .room-item is a common container
+            ->filter("div:contains('{$room->type}')")
+            ->filter('.price')
+            ->first();
 
-    echo "{$crawler->filter('.price')->first()->text()}";
+        if ($targetPrice->count() > 0) {
+            return response($targetPrice->text());
+        }
+
+        // Fallback: If no specific match, try a more general search or return the first available price
+        $prices = $crawler->filter('.price');
+        if ($prices->count() > 0) {
+            // We can pick an index based on the ID for variety if a specific match isn't found
+            $index = ($id - 1) % $prices->count();
+            return response($prices->eq($index)->text());
+        }
+
+        return response('Price information currently unavailable.', 404);
+    } catch (\Exception $e) {
+        return response('Error fetching live price: ' . $e->getMessage(), 500);
+    }
 });
+
+Route::get('/rooms/{id}', [RoomController::class, 'show']);
 
 Route::group(['prefix' => 'dashboard'], function () {
     Route::view('/', 'dashboard/dashboard');

@@ -7,7 +7,7 @@
             @foreach ($hotels as $hotel)
                 <div class="col-sm-4">
                     <div class="card mb-3">
-                        <div style="background-image:url('{{ asset($hotel->image) }}'); height:300px; background-size:cover; background-position:center; background-color:#eee;" class="img-fluid" alt="{{ $hotel->name }}"></div>
+                        <div style="background-image:url('{{ \Illuminate\Support\Str::contains($hotel->image, '://') ? $hotel->image : asset($hotel->image) }}'); height:300px; background-size:cover; background-position:center; background-color:#eee;" class="img-fluid" alt="{{ $hotel->name }}"></div>
                         <div class="card-body">
                             <h5 class="card-title">{{ $hotel->name }}</h5>
                             <small class="text-muted">{{ $hotel->location }}</small>
