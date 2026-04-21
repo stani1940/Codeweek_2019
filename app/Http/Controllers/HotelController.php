@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Hotel;
+use Illuminate\View\View;
 
 class HotelController extends Controller
 {
-    public function __construct()
+    public function index(): View
     {
-        $this->middleware('auth');
-    }
-    public function index() {
         $hotels = Hotel::all();
         return view('hotels')->with('hotels', $hotels);
     }

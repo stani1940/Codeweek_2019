@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use App\Models\Hotel;
 
@@ -7,10 +9,8 @@ class HotelSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         $hotels = [
             [
@@ -34,12 +34,7 @@ class HotelSeeder extends Seeder
         ];
 
         foreach ($hotels as $hotel) {
-            Hotel::create(array(
-                'name' => $hotel['name'],
-                'location' => $hotel['location'],
-                'description' => $hotel['description'],
-                'image' => $hotel['image']
-            ));
+            Hotel::create($hotel);
         }
     }
 }

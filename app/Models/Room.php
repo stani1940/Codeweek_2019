@@ -2,11 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Room extends Model
 {
+    use HasFactory;
+
     public $timestamps = false;
+
     protected $fillable = [
         'hotel_id',
         'type',
@@ -15,7 +20,8 @@ class Room extends Model
         'image'
     ];
 
-    public function hotel() {
-        return $this->belongsTo('App\Models\Hotel');
+    public function hotel(): BelongsTo
+    {
+        return $this->belongsTo(Hotel::class);
     }
 }

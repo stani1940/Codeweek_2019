@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use App\Models\Reservation;
 
@@ -7,10 +9,8 @@ class ReservationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         $reservations = [
             [
@@ -51,13 +51,7 @@ class ReservationSeeder extends Seeder
         ];
 
         foreach ($reservations as $reservation) {
-            Reservation::create(array(
-                'user_id' => $reservation['user_id'],
-                'room_id' => $reservation['room_id'],
-                'num_of_guests' => $reservation['num_of_guests'],
-                'arrival' => $reservation['arrival'],
-                'departure' => $reservation['departure']
-            ));
+            Reservation::create($reservation);
         }
     }
 }
