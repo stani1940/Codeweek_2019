@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\HomeController;
@@ -48,4 +48,9 @@ Route::group(['prefix' => 'dashboard'], function () {
 
 Auth::routes();
 
+<<<<<<< HEAD
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
+=======
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+ Route::get('/hotels', 'HotelController@index')->name('hotels')->middleware('auth');
+>>>>>>> 165223cb5e51a443bd3c337172bcb5b421c94941

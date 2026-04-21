@@ -10,7 +10,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Управлявай своите резервации </h4>
                         <p class="card-text">Виж и редактирай своите текущи резервации.</p>
-                        <a href="/dashboard/reservations" class="btn btn-primary">Моите резервации</a>
+                        <a href="{{route('reservations.index')}}" class="btn btn-primary">Моите резервации</a>
                     </div>
                 </div>
             </div>
@@ -19,7 +19,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Намери своето място за отдих и почивка</h4>
                         <p class="card-text">Разгледай каталога ни с хотели партньори.</p>
-                        <a href="/hotels" class="btn btn-primary">Нашите Хотели</a>
+                        <a href="{{route('hotels')}}" class="btn btn-primary">Нашите Хотели</a>
                     </div>
                 </div>
             </div>
