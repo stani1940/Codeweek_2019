@@ -22,8 +22,7 @@ use Symfony\Component\HttpClient\HttpClient;
 
 Route::view('/', 'home');
 
-// auth middleware moved from HotelController constructor to route definition (L12+ removes constructor middleware)
-Route::get('/hotels', [HotelController::class, 'index'])->middleware('auth');
+Route::get('/hotels', [HotelController::class, 'index'])->name('hotels')->middleware('auth');
 
 Route::get('/rooms', [RoomController::class, 'index']);
 Route::get('/rooms/{id}', [RoomController::class, 'show']);
@@ -48,9 +47,4 @@ Route::group(['prefix' => 'dashboard'], function () {
 
 Auth::routes();
 
-<<<<<<< HEAD
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
-=======
-Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
- Route::get('/hotels', 'HotelController@index')->name('hotels')->middleware('auth');
->>>>>>> 165223cb5e51a443bd3c337172bcb5b421c94941
