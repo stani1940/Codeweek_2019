@@ -18,35 +18,35 @@ class RoomSeeder extends Seeder
                 'type' => 'апартамент',
                 'description' => ' Хол и спалня,  Баня с вана 3, Бюро',
                 'price' => 110.00,
-                'image' => 'public/image/Hemus_Apartament_1.jpg'
+                'image' => 'image/Hemus_Apartament_1.jpg'
             ],
             [
                 'hotel_id' => 1,
                 'type' => 'Двойна стая',
                 'description' => 'Стая с 2 легла',
                 'price' => 70.00,
-                'image' => 'public/image/Hemus_Double_room_1.jpg'
+                'image' => 'image/Hemus_Double_room_1.jpg'
             ],
             [
                 'hotel_id' => 2,
                 'type' => 'Двойна стая',
                 'description' => 'Стая с 2 легла.',
                 'price' => 50.00,
-                'image' => 'public/image/Body_Double_room.jpg'
+                'image' => 'image/Body_Double_room.jpg'
             ],
             [
                 'hotel_id' => 2,
                 'type' => 'Eдинична',
                 'description' => 'Стая с едно легло.',
                 'price' => 35.00,
-                'image' => 'public/image/body_Single_room.jpg'
+                'image' => 'image/body_Single_room.jpg'
             ],
             [
                 'hotel_id' => 3,
                 'type' => 'Suite',
                 'description' => 'One ultra wide king bed, full kitchen.',
                 'price' => 399.00,
-                'image' => 'https://placeimg.com/640/480/arch'
+                'image' => 'image/rade.jpg'
             ]
         ];
 
